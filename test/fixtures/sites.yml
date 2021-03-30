@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uri: MyString
+  software: one
+  title: MyString
+  short_description: MyString
+  description: MyText
+  registrations: false
+  thumbnail: MyString
+  dns_status: MyString
+  http_status: 1
+  last_confirmation_date: 2021-02-13 07:14:12
+
+two:
+  uri: MyString
+  software: two
+  title: MyString
+  short_description: MyString
+  description: MyText
+  registrations: false
+  thumbnail: MyString
+  dns_status: MyString
+  http_status: 1
+  last_confirmation_date: 2021-02-13 07:14:12
