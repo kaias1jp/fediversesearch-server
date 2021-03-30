@@ -37,5 +37,13 @@ module FediversesearchServer
     config.api_only = true
     config.cache_classes = false
     config.reload_classes_only_on_change = false
+config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins "*"
+    resource "*",
+      headers: :any,
+      methods: [:get, :post, :options, :head]
+  end
+end
   end
 end
