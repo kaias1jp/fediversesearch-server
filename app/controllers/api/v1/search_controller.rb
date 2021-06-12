@@ -45,6 +45,7 @@ module Api
             sites = sites.joins(:software).merge(Software.where(name: params[:software]))
           end
           sites = sites.where(optout: false)
+          sites = sites.where(dns_status: "NOERROR")
           siteshash = sites.to_a
           result = []
           
