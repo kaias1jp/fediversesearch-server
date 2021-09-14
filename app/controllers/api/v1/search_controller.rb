@@ -17,6 +17,7 @@ module Api
               end
             end
             sites = sites.where(optout: false)
+            sites = sites.where(dns_status: "NOERROR")
             siteshash = sites.to_a
             result = []
 
