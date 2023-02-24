@@ -3,7 +3,7 @@ module Api
     class SitesController < ApplicationController
       include ActionController::HttpAuthentication::Token::ControllerMethods
       before_action :authenticate
-      before_action :set_site, only:[:update]
+      before_action :set_site, only:[:update, :destroy]
       before_action :set_site_from_uri, only:[:index]
 
       def index
@@ -24,6 +24,14 @@ module Api
           render json: { status: 'ERROR', message: 'Not updated', data: @site.errors }
         end
       end
+      def destroy
+        if @site.destroy
+          render json: { status: 'SUCCESS', message: 'Deleted the site', data: @site }
+        else
+          render json: { status: 'ERROR', message: 'Not Deleted', data: @site.errors }
+        end
+      end
+
       def authenticate
         authenticate_or_request_with_http_token do |token,options|
           auth_user = User.find_by(token: token)
@@ -40,7 +48,7 @@ module Api
         params.require(:site).permit(:uri, :software_id)
       end
       def site_params_update
-        params.require(:site).permit(:uri, :title, :short_description, :description, :registrations,:thumbnail, :last_confirmation_date, :dns_status, :http_status, :software_id, :optout)
+        params.require(:site).permit(:uri, :title, :short_description, :description, :registrations,:thumbnail, :last_confirmation_date, :dns_status, :http_status, :software_id, :optout, :total_user, :active_user)
       end
     end
   end
